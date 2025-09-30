@@ -1,0 +1,296 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* CalcVerse Dark Theme Variables */
+:root {
+  --radius: 0.75rem;
+  /* Dark theme as default */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #1e1e1e;
+  --card-foreground: #ffffff;
+  --popover: #1e1e1e;
+  --popover-foreground: #ffffff;
+  --primary: #00d4ff;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
+  --accent: #8b5cf6;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #00d4ff;
+  
+  /* Custom CalcVerse colors */
+  --neon-blue: #00d4ff;
+  --neon-purple: #8b5cf6;
+  --neon-teal: #14b8a6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom CalcVerse Styles */
+@layer components {
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+  
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  }
+  
+  .neon-glow-purple {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  
+  .neon-glow-teal {
+    box-shadow: 0 0 20px rgba(20, 184, 166, 0.3);
+  }
+  
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-hover:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+  }
+  
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: linear-gradient(135deg, #00d4ff, #8b5cf6, #14b8a6);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+    -webkit-mask-composite: xor;
+  }
+  
+  .animated-gradient {
+    background: linear-gradient(270deg, #00d4ff, #8b5cf6, #14b8a6, #00d4ff);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite alternate;
+  }
+  
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+  
+  .stagger-fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .stagger-fade-in:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-fade-in:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-fade-in:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-fade-in:nth-child(4) { animation-delay: 0.4s; }
+  
+  .progress-bar {
+    background: linear-gradient(90deg, #00d4ff, #8b5cf6);
+    border-radius: 9999px;
+    height: 8px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .input-glow:focus {
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.5);
+    border-color: #00d4ff;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+    border: none;
+    color: #0a0a0a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #0ea5e9, #00d4ff);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+  }
+  
+  .btn-secondary {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    border: none;
+    color: white;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-secondary:hover {
+    background: linear-gradient(135deg, #a855f7, #8b5cf6);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+  }
+  
+  .grade-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-align: center;
+    min-width: 80px;
+  }
+  
+  .grade-a { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+  .grade-b { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; }
+  .grade-c { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+  .grade-d { background: linear-gradient(135deg, #f97316, #ea580c); color: white; }
+  .grade-f { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+  100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countUp {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.count-up {
+  animation: countUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Pregnancy Calculator Pastel Theme */
+.pregnancy-theme {
+  --pregnancy-primary: #fce7f3;
+  --pregnancy-secondary: #f3e8ff;
+  --pregnancy-accent: #ddd6fe;
+  --pregnancy-text: #7c3aed;
+}
+
+.pregnancy-card {
+  background: linear-gradient(135deg, #fce7f3, #f3e8ff);
+  border: 1px solid #ddd6fe;
+  color: #7c3aed;
+}
+
+.pregnancy-progress {
+  background: linear-gradient(90deg, #f472b6, #a855f7);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-hover:hover {
+    transform: none;
+  }
+  
+  .floating {
+    animation: none;
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #8b5cf6, #00d4ff);
+}
